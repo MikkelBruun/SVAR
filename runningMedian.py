@@ -1,4 +1,7 @@
 from heapq import heappush, heappop
+
+MAXHEAPSIZE = 500
+
 class DualHeap:
     def __init__(self):
         self.Left = []
@@ -17,7 +20,7 @@ class DualHeap:
                 self.Right.append(max(v,w))
         else:#normal operation
             (L,R) = abs(self.Left[0]),self.Right[0]
-            if L < v:
+            if L > v:
                 self.__insertL(v)
             else:
                 self.__insertR(v)
@@ -33,6 +36,11 @@ class DualHeap:
             self.__insertR(heappop(self.Left))
         elif R-1>L:
             self.__insertL(heappop(self.Right))
+        if L > MAXHEAPSIZE or R > MAXHEAPSIZE:
+            print(self.Left)
+            self.Left = self.Left[:50]
+            print(self.Left)
+            self.Right = self.Right[:50]
                 
     def roots(self):
         return (abs(self.Left[0]),abs(self.Right[0]))
@@ -42,6 +50,17 @@ class DualHeap:
         if(L>R):return roots[0]
         elif(R>L):return roots[1]
         else: return roots
+        
     def __str__(self):
         val = ""
-        for x in self.
+        val += f"...[{len(self.Left)} total items]\n"
+        for x in self.Left[:5]:
+            val = f"{-x}\n"+val
+        val += f"""------------------------------------
+{self.median()}
+------------------------------------
+"""
+        for x in self.Right[:5]:
+            val += f"{x}\n"
+        val += f"...[{len(self.Right)} total items]"
+        return val

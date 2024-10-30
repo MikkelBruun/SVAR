@@ -14,7 +14,5 @@ for x in lr.ReadFile("fakeData.csv"):
         testLst.append(income)
     i+=1
 testLst.sort()
-print(DH.Left)
-print(DH.Right)
-print(DH.median())
+print(DH)
 print(testLst[int(len(testLst)/2)])
