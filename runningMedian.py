@@ -37,9 +37,7 @@ class DualHeap:
         elif R-1>L:
             self.__insertL(heappop(self.Right))
         if L > MAXHEAPSIZE or R > MAXHEAPSIZE:
-            print(self.Left)
             self.Left = self.Left[:50]
-            print(self.Left)
             self.Right = self.Right[:50]
                 
     def roots(self):
