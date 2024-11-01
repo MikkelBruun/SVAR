@@ -26,10 +26,12 @@ class DualHeap:
                 self.__insertR(v)
     def __insertL(self,v):
         heappush(self.Left, v*-1)
-        self.__balance()
+        (L,R) = abs(self.Left[0]),self.Right[0]
+        if(L>R+1): self.__balance()
     def __insertR(self,v):
         heappush(self.Right, abs(v))
-        self.__balance()
+        (L,R) = abs(self.Left[0]),self.Right[0]
+        if(R>L+1): self.__balance()
     def __balance(self):
         L,R = len(self.Left),len(self.Right)
         if L-1>R:

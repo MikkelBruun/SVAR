@@ -1,4 +1,6 @@
+from types import CodeType
 import matplotlib.pyplot as plt
+import cProfile
 #used for bar plots
 plt.set_cmap("plasma")
 def getBuckets(R: range):
@@ -13,7 +15,7 @@ def bucketsInsert(b:dict,i:int):
             b[key] += 1
             break
 
-def barPlot(b,filename="test",median=None):
+def barPlot(b,save=False,filename="test",median=None,title=None):
     buckets=[]
     counts=[]
     for key in sorted(b):
@@ -24,8 +26,9 @@ def barPlot(b,filename="test",median=None):
     if median is not None: 
         height = plt.gca().get_yticks()
         height = height[len(height)-1]
-        plt.vlines([median],0,height)
+        plt.vlines(median,0,height)
+    if title is not None: plt.title(title)
     plt.tight_layout()
-    
-    plt.savefig(filename)
-    
+
+    if save: plt.savefig(filename)
+    else: plt.show()
