@@ -2,3 +2,5 @@ datasæt/emails.csv
 datasæt/wsb_comments_raw.csv
 fakeData.csv
 /__pycache__
+/data
+BigfakeData.csv
